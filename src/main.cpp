@@ -12,5 +12,8 @@ int main() {
     std::cout << "Graph built successfully!" << std::endl;
     std::cout << "Total routable intersections/nodes: " << adjacency_list.size() << std::endl;
 
+    MapViewer map(graph.getNodeCoordinates(), graph.getAdjacencyList());
+    map.run();
+
     return 0;
 }
