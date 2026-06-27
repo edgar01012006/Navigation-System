@@ -27,6 +27,9 @@ endif
 CXX      := g++
 CXXFLAGS := -std=c++20 -O3 -Wall -Wextra -pedantic
 
+# Libraries shortcut for SFML graphics engine
+LIBS     := -lsfml-graphics -lsfml-window -lsfml-system
+
 # Directories
 SRC_DIR  := src
 INC_DIR  := include
@@ -43,6 +46,7 @@ TARGET   := $(BIN_DIR)/YerevanNav$(TARGET_EXT)
 
 SOURCES  := $(SRC_DIR)/main.cpp \
             $(SRC_DIR)/MapGraph.cpp \
+            $(SRC_DIR)/MapViewer.cpp \
             $(EXT_DIR)/pugixml.cpp
 
 OBJECTS  := $(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
@@ -57,7 +61,7 @@ all: $(TARGET)
 $(TARGET): $(OBJECTS)
 	@$(call MKDIR,$(BIN_DIR))
 	@echo Linking executable: $@
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ -lsfml-graphics -lsfml-window -lsfml-system
 	@echo Build successful!
 
 # Rule to compile src/*.cpp into obj/src/*.o
